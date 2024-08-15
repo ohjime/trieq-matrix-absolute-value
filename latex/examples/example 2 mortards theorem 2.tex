@@ -1,0 +1,71 @@
+
+\begin{example}[Using Theorem \ref{theorem3}]
+    Consider: 
+    $$
+    A = \begin{bmatrix}
+        -1 & 0 \\ 0 & -1
+    \end{bmatrix} \quad
+    \text{and} \quad
+    B = \begin{bmatrix}
+        0 & -1 \\ 1 & 1
+    \end{bmatrix}
+    $$
+    Clearly $A$ and $B$ commute, and checking the inequality results in:
+    \begin{align*}
+        A^*B + B^*A &=
+        \begin{bmatrix}
+            -1 & 0 \\ 0 & -1
+        \end{bmatrix}
+        \begin{bmatrix}
+            0 & -1 \\ 1 & 1
+        \end{bmatrix} + 
+        \begin{bmatrix}
+            0 & 1 \\ -1 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            -1 & 0 \\ 0 & -1
+        \end{bmatrix}\\
+        &= 
+        \begin{bmatrix}
+            0 & 1 \\ -1 & -1
+        \end{bmatrix} + 
+        \begin{bmatrix}
+            0 & -1 \\ 1 & -1
+        \end{bmatrix}\\
+        & = 
+        \begin{bmatrix}
+            0 & 0 \\ 0 & -2
+        \end{bmatrix}\\
+        &\leq
+        \begin{bmatrix}
+            0 & 0 \\ 0 & 0
+        \end{bmatrix}
+    \end{align*}
+    Then the triangle inequality is guaranteed to succeed. We verify with the results with the following:
+        $
+        |B| = 
+        \begin{bmatrix}
+            \frac{2\sqrt{5}}{5} & \frac{\sqrt{5}}{5} \\
+            \frac{\sqrt{5}}{5} & \frac{3\sqrt{5}}{5}
+               \end{bmatrix}
+        $
+    and $ |A+B| = \begin{bmatrix}
+        \frac{3\sqrt{5}}{5} & \frac{\sqrt{5}}{5} \\
+            \frac{\sqrt{5}}{5} & \frac{2\sqrt{5}}{5}
+    \end{bmatrix}$
+    and with
+    \begin{align*}
+        |A|+|B|-|A+B| &= \begin{bmatrix} 
+            1-\frac{\sqrt{5}}{5}& 0 \\ 0 & 1 + \frac{\sqrt{5}}{5}
+        \end{bmatrix}\\
+        &\approx
+        \begin{bmatrix}
+            0.553 & 0 \\ 0 & 1.447
+        \end{bmatrix}\\
+        &\geq
+        \begin{bmatrix}
+            0 & 0 \\ 0 & 0
+        \end{bmatrix}.
+    \end{align*}
+    This shows that it passes.
+\end{example}

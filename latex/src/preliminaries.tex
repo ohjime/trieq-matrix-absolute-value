@@ -1,0 +1,123 @@
+\section{Preliminaries}
+In this section, we briefly revisit the concept of absolute value, interpreting it as a measure of magnitude. We then extend these ideas to matrix spaces, exploring the resulting properties and behavior.
+
+Absolute value, or modulus, is a fundamental concept in mathematics that quantifies the magnitude or size of a given mathematical object. When extending this concept to more complex structures such as vector and matrix spaces, the notion of magnitude is generalized through the norm function, denoted as
+\[
+||\cdot||: \mathbb{M}_n \rightarrow \mathbb{R}.
+\]
+The norm function shares several key properties with the absolute value, ensuring that the concept of magnitude remains consistent and meaningful. For any matrices \(A, B, C \in S\) and a scalar \(a \in \mathbb{C}\), the norm function satisfies the following properties:
+\begin{enumerate}
+    \item $\|A\| \geq 0$ \text{ (Non-negative)}
+    \item $ \|A\|= 0 \Leftrightarrow A = \textbf{0}_S$ \text{(Positive-definiteness)}
+    \item  $\|aA\| = |a|\|A\|$ \text{(Scalar multiplication)}
+    \item $\|A+B\| \leq \|A\| + \|B\|$ \text{ (Triangle inequality)}
+    \item \( \|AB\| \leq \|A\|\|B\| \) \text{ (Submultiplicative)}
+\end{enumerate}
+These properties are crucial as they provide a consistent framework for quantifying magnitude within matrix spaces. One significant application of matrix norms is in calculating the condition number, which measures the sensitivity of a solution to perturbations. Ensuring that these properties hold is essential for the concept of magnitude to retain its practical relevance and mathematical rigor.
+\par To deepen our understanding of the matrix absolute value, it is essential to introduce some foundational terminology.
+\begin{definition}
+    A matrix $A \in \mathbb{M}_n(\mathbb{F})$ is \textbf{positive semidefinite} (PSD) if and only if $x^* A x \geq 0$ for all $x \in \mathbb{F}^n$.
+\end{definition}
+\begin{definition}
+    Given matrices $A_i\in\mathbb{M}_n({\mathbb{F}})$ that are PSD, the relation \(\leq\) establishes a \textbf{partial order}. This means that certain pairs of matrices may be ordred relative to each other, though not all matrix pairs are necessarily comparable. A paritial order on matrices \(A, B, C \in \mathbb{M}_n({\mathbb{C}})\) must satisfy the following properties:
+    \begin{enumerate}
+        \item Reflectivity: $A \leq A$
+        \item Anti-symmetric: If $ A \leq B$ and $B\leq A$ then $A=B$
+        \item Transitive: If $A\leq B$ and $B \leq A$ then $A\leq C$.
+    \end{enumerate}
+\end{definition}
+An example of non-comparable matrix pairs is given by:
+$$
+\begin{bmatrix}
+    0 & 0\\
+    0 & 0
+\end{bmatrix}
+\nleq
+\begin{bmatrix}
+    -1 & 0 \\
+     0 & 1
+\end{bmatrix} \text{ and }
+\begin{bmatrix}
+    1 & 0 \\
+     0 & -1
+\end{bmatrix}
+\nleq
+\begin{bmatrix}
+    0 & 0\\
+    0 & 0
+\end{bmatrix}.$$
+When applying the concept of absolute value to a matrix, since $\mathbb{M}_n$ is a partially ordered set, this disrupts the properties as seen for absolute value for the field, $\mathbb{F}$. 
+The consequence of this means that these properties are not always satisfied for arbitrary matrices.
+Since absolute value for the field \( \mathbb{F} \) can be expressed as a square root function: $|a| = \sqrt{a^2}$, and applying this concept to $A \in \mathbb{M}_n(\mathbb{F})$ we say that $|A| = \left( A^*A\right)^\frac{1}{2}.$ 
+It should be noted that $A^*A$ is a symmetric, positive semidefinite matrix. This square root function of matrices can be calculated easily using the following result: 
+\begin{theorem}[Horn \& Johnson \cite{Horn}]
+    \label{theorem1}
+    Let $A \in \mathbb{M}_2(\mathbb{F})$ be Hermitian, positive semidefinite and nonzero. Let 
+        $$
+        \tau = \left( tr(A) + 2\sqrt{det(A)} \right)^{\frac{1}{2}}
+        $$
+            Then the square root of a matrix is the following:
+        $$
+        A^\frac{1}{2} =\tau^{-1}(A + \sqrt{det(A)}I_2),
+        $$
+\end{theorem}
+though originally unattributed, it is stated as exercise $7.3.P26$.
+\begin{proof}
+    Let $A =
+    \begin{bmatrix}
+        a & b \\
+        c & d
+    \end{bmatrix}$
+    be Hermitian, positive semidefinite and nonzero. Then:
+    $$
+    A^{\frac{1}{2}} = \frac{1}{\sqrt{ a + d + 2\sqrt{ad - bc}}}
+    \begin{bmatrix}
+        a + \sqrt{ad-bc} & b\\
+        c & d + \sqrt{ad-bc}
+    \end{bmatrix}
+    $$
+    Squaring this result gives the following:
+    \begin{align*}
+        \left(A^{\frac{1}{2}}\right)^2 &= \left(\frac{1}{\sqrt{ a + d + 2\sqrt{ad - bc}}}
+    \begin{bmatrix}
+        a + \sqrt{ad-bc} & b\\
+        c & d + \sqrt{ad-bc}
+    \end{bmatrix} \right)^2\\
+    &=
+    \frac{1}{ a + d + 2\sqrt{ad - bc} }
+    \begin{bmatrix}
+        a + \sqrt{ad-bc} & b\\
+        c & d + \sqrt{ad-bc}
+    \end{bmatrix}^2\\
+    &=
+    \frac{1}{ a + d + 2\sqrt{ad - bc} }
+    \begin{bmatrix}
+        a^2 + ad +2a\sqrt{ad-bc} & ab +ba + 2b\sqrt{ad-bc} \\
+        ac + cd + 2c\sqrt{ad-bc} & d^2 +ad +2d\sqrt{ad-bc}
+    \end{bmatrix} \\ 
+    &= 
+    \frac{1}{ a + d + 2\sqrt{ad - bc} }
+    \begin{bmatrix}
+        a(a + d +2\sqrt{ad-bc}) & b(a +d + 2\sqrt{ad-bc}) \\
+        c(a + d + 2\sqrt{ad-bc}) & d(a +d +2\sqrt{ad-bc})
+    \end{bmatrix} \\ 
+    &= 
+    \begin{bmatrix}
+        a &b\\
+        c & d
+    \end{bmatrix}\\
+    &= A.
+    \end{align*}
+\end{proof}
+Another method to calculate the absolute value of a matrix is through the spectral decomposition algorithm. This involves applying the square root to the diagonal entries of matrix \(D\) in the decomposition, giving:
+$$
+|A| = \left(A^*A\right)^\frac{1}{2} = PD^\frac{1}{2}P^*.
+$$
+\par The properties of absolute value for $a \in \mathbb{F}$ are compared with when using $A \in \mathbb{M}_n(\mathbb{F})$.
+Since $A^*A$ Hermitian and PSD, it then follows that $|A|$ is also PSD, as the square root of the diagonal entries in \(D\) remains non-negative.
+
+\par The concept of of matrix absolute value is closely tied to the partial order defined on the space of positive semidefinite matrices. Since \(\mathbb{M}_n\) is a partially ordered set, there are instanes where matrices cannot be
+directly compared using this order. This limitations can lead to the failure of certain properties typically associated with absolute value in \(\mathbb{M}_n\) when extended to matrices. Specifically, because \(\leq\) 
+is a partial order, there may be matries that are not comparable, which can result in the failure of this property and others like it, hence, in general, \(|AB| \nleq |A||B|\) and \(|A+B| \nleq |A| + |B|\)
+for \(A, B \in \mathbb{M}_n\). However, Mortad has shown that the equality can hold under certian conditions specifically, \(|AB| = |A||B|\), when both \(A\) and \(B\) are Hermitian, or when \(A\) and \(B\) commute provided that \(A\) is normal \cite{Mortad}.
+\par When these properties, such as submultiplicativity or the triangle inequality, fail, the sense of magnitude associated with the matrix absolute value loses its reliability for tasks like analyzing convergence rates or boundedness properties. Therefore, understanding these limitations is crucial when working with matrix absolute values in more advanced mathematical contexts.

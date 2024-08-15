@@ -1,0 +1,166 @@
+\usepackage{amssymb, amstext, amscd, amsmath, amssymb}
+\usepackage{mathtools, paralist, color, dsfont, rotating}
+\usepackage{verbatim}
+\usepackage{enumerate,enumitem}
+\usepackage{tikz-cd}
+%\usepackage{fullpage} 
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{todonotes}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% change font style
+%\usepackage{palatino}
+%\usepackage{times}
+%\usepackage{tgbonum}
+%\usepackage{charter}
+%\usepackage{times}
+
+% check if all items are cited
+%\usepackage{refcheck}
+%%%%%
+
+%\usepackage[notcite,notref]{showkeys}
+%\usepackage{showlabels}
+%\usepackage{color}
+\usepackage{hyperref}
+%\usepackage{tikz-cd}
+\usepackage{tikz}
+\usepackage{mathdots}
+
+% boxed figures
+\floatstyle{boxed}
+\restylefloat{figure}
+
+% style of text
+\numberwithin{equation}{section}
+%\setlength{\parskip}{1.05pt}
+\footskip=20pt %for numbering of pages
+
+\usepackage[a4paper]{geometry}
+\geometry{
+    tmargin= 3cm, %3cm, %1.3in, %3.5cm, %2.65cm,
+    bmargin= 2.5cm, %2.3cm, %1.1in, %3cm, %2.5cm,
+    rmargin= 2.5cm, %2.3cm, %1.1in, %2.75cm, %2.3cm,
+    lmargin= 2.5cm %2.3cm %1.1in %2.75cm, %2.3cm
+}
+
+% quoting: if quoting package is not applicable, mute the following orders and substitute quoting <----> quote
+\usepackage{quoting}
+\quotingsetup{vskip=.1in}
+\quotingsetup{leftmargin=.17in}
+\quotingsetup{rightmargin=.17in}
+%%%%%
+
+% adjust spaces in bibliography
+\let\OLDthebibliography\thebibliography\renewcommand\thebibliography[1]{
+    \OLDthebibliography{#1}
+    \setlength{\parskip}{0pt}
+    \setlength{\itemsep}{2pt plus 0.5ex}
+}
+
+%%%%%%%%%% begin macros %%%%%%%%%%%%%%%
+%
+%      Cites in bold rather than roman.
+\makeatletter
+\def\@cite#1#2{{\m@th\upshape\bfseries%
+            [{#1\if@tempswa{\m@th\upshape\mdseries, #2}\fi}]}}
+\makeatother
+%
+% Proclamation definitions in the most emphatic (plain) style:
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+% Proclamation definitions in the less emphatic (definition) style:
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{examples}[theorem]{Examples}
+\newtheorem{counterexample}[theorem]{Counterexample}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{application}[theorem]{Application}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{question}[theorem]{Question}
+\newtheorem*{acknow}{Acknowledgements}
+\newtheorem*{details}{Details}
+% Proclamation definitions in the least emphatic (remark) style:
+\theoremstyle{remark}
+%\newtheorem{remark}{Remark}
+\newtheorem*{notation}{Notation}
+
+%      Proof environment
+\renewcommand{\proofname}{\em\textbf{Proof.}\/}
+\renewcommand{\qedsymbol}{{\vrule height5pt width5pt depth1pt}}
+% Change first-level `enumerate' numbering from arabic to roman.
+%
+\renewcommand{\labelenumi}{\textup{(\roman{enumi})} }
+% properly align :=
+\mathtoolsset{centercolon}
+%
+% Blackboard bold letters
+\newcommand{\bbA}{{\mathbb{A}}}
+\newcommand{\bbB}{{\mathbb{B}}}
+\newcommand{\bbC}{{\mathbb{C}}}
+\newcommand{\bbD}{{\mathbb{D}}}
+\newcommand{\bbI}{{\mathbb{I}}}
+\newcommand{\bbF}{{\mathbb{F}}}
+\newcommand{\bbK}{{\mathbb{K}}}
+\newcommand{\bbN}{{\mathbb{N}}}
+\newcommand{\bbQ}{{\mathbb{Q}}}
+\newcommand{\bbR}{{\mathbb{R}}}
+\newcommand{\bbT}{{\mathbb{T}}}
+\newcommand{\bbZ}{{\mathbb{Z}}}
+% Capital script letters
+\newcommand{\A}{{\mathcal{A}}}
+\newcommand{\B}{{\mathcal{B}}}
+\newcommand{\C}{{\mathcal{C}}}
+\newcommand{\D}{{\mathcal{D}}}
+\newcommand{\E}{{\mathcal{E}}}
+\newcommand{\F}{{\mathcal{F}}}
+\newcommand{\G}{{\mathcal{G}}}
+\renewcommand{\H}{{\mathcal{H}}}
+\newcommand{\I}{{\mathcal{I}}}
+\newcommand{\J}{{\mathcal{J}}}
+\newcommand{\K}{{\mathcal{K}}}
+\renewcommand{\L}{{\mathcal{L}}}
+\newcommand{\M}{{\mathcal{M}}}
+\newcommand{\N}{{\mathcal{N}}}
+\renewcommand{\O}{{\mathcal{O}}}
+\renewcommand{\P}{{\mathcal{P}}}
+\newcommand{\Q}{{\mathcal{Q}}}
+\newcommand{\R}{{\mathcal{R}}}
+\renewcommand{\S}{{\mathcal{S}}}
+\newcommand{\T}{{\mathcal{T}}}
+\newcommand{\U}{{\mathcal{U}}}
+\newcommand{\V}{{\mathcal{V}}}
+\newcommand{\W}{{\mathcal{W}}}
+\newcommand{\X}{{\mathcal{X}}}
+\newcommand{\Y}{{\mathcal{Y}}}
+\newcommand{\Z}{{\mathcal{Z}}}
+% Fraktur letters
+\newcommand{\germA}{{\mathfrak{A}}}
+\newcommand{\germB}{{\mathfrak{B}}}
+\newcommand{\fA}{{\mathfrak{A}}}
+\newcommand{\fB}{{\mathfrak{B}}}
+\newcommand{\fC}{{\mathfrak{C}}}
+\newcommand{\fD}{{\mathfrak{D}}}
+\newcommand{\fH}{{\mathfrak{H}}}
+\newcommand{\fG}{{\mathfrak{G}}}
+\newcommand{\fI}{{\mathfrak{I}}}
+\newcommand{\fJ}{{\mathfrak{J}}}
+\newcommand{\fK}{{\mathfrak{K}}}
+\newcommand{\fL}{{\mathfrak{L}}}
+\newcommand{\fM}{{\mathfrak{M}}}
+\newcommand{\fR}{{\mathfrak{R}}}
+\newcommand{\fS}{{\mathfrak{S}}}
+\newcommand{\fT}{{\mathfrak{T}}}
+\newcommand{\fU}{{\mathfrak{U}}}
+\newcommand{\fV}{{\mathfrak{V}}}
+% Math boldface
+\newcommand{\ba}{{\mathbf{a}}}
+\newcommand{\be}{{\mathbf{e}}}
+\newcommand{\bk}{{\mathbf{k}}}
+%%%%%%%%%% end macros %%%%%%%%%%

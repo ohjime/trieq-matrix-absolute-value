@@ -1,0 +1,54 @@
+\begin{example}
+    Let \[ A = 
+    \begin{bmatrix}
+        -1 & 0 \\
+        0 & -1
+    \end{bmatrix} \text{ and }
+    B = \begin{bmatrix}
+        -1 & 1\\ 
+        -1 & -1
+    \end{bmatrix} \]
+    It is clear that \(A\) and \(B\) are commutative, and \(A\) is normal. We check that \(B\) is hyponormal as follows: 
+    \begin{align*}
+        B^*B - BB^* &=
+        \begin{bmatrix}
+            -1 & -1\\ -1 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            -1 & 1 \\ -1 & -1
+        \end{bmatrix}
+        -
+        \begin{bmatrix}
+            -1 & 1 \\ -1 & -1
+        \end{bmatrix}
+        \begin{bmatrix}
+            -1 & 1\\ -1 & 1
+        \end{bmatrix}\\
+        &=
+        \begin{bmatrix}
+            2 & 0 \\ 0 & 2
+        \end{bmatrix}
+        - 
+        \begin{bmatrix}
+            2 & 0 \\ 0 & 2
+        \end{bmatrix}\\
+        &= 0
+    \end{align*}
+    showing that \(B\) is normal. Therefore, by Theorem \ref{theorem2} the triangle inequality results will be valid. Verifying this claim with 
+    \[
+    |A| = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}, \quad
+    |B| = \begin{bmatrix}  \sqrt{2} & 0 \\ 0 & \sqrt{2} \end{bmatrix} \text{ and }
+    |A+B| = \begin{bmatrix} \sqrt{5} & 0 \\ 0 & \sqrt{5}   \end{bmatrix}
+    \]
+    produces the difference matrix
+\begin{align*}
+    |A|+|B|-|A+B| &= 
+    \begin{bmatrix} 1 +  \sqrt{2} - \sqrt{5} & 0 \\ 0 &  1 +  \sqrt{2} - \sqrt{5} \end{bmatrix} \\
+    &\approx
+    \begin{bmatrix}
+        0.178 & 0 \\ 0 & 0.178
+    \end{bmatrix}\\
+    &\geq
+    0.
+\end{align*}
+\end{example}

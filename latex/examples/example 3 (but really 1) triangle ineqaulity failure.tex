@@ -1,0 +1,152 @@
+\begin{example}
+Consider: 
+$$
+A = \begin{bmatrix}
+    -1 & 1 \\
+    -1 & 1
+\end{bmatrix} \quad
+\text{and} \quad
+I_2 = \begin{bmatrix}
+    1 & 0 \\
+    0 & 1
+\end{bmatrix}
+$$
+We wish to verify that: $|A+I_2| \leq |A|+|I_2|$ is not true. It is noted that $\sqrt{I_2}=I_2$. Using Theorem \ref{theorem1} allows simple computation of the matrix absolute value for matrix $A+I_2$ and matrix $A$.
+\begin{align*}
+    |A+I_2| &= 
+    \left|\begin{bmatrix}
+        -1 & 1 \\
+        -1 & 1
+    \end{bmatrix} 
+    +
+    \begin{bmatrix}
+        1 & 0 \\
+        0 & 1
+    \end{bmatrix}\right| 
+    = 
+    \left|\begin{bmatrix}
+        0 & 1 \\
+        -1 & 2
+    \end{bmatrix}\right| \\
+    &=
+    \left(
+    \begin{bmatrix}
+        0 & -1 \\
+        1 & 2
+    \end{bmatrix}
+    \begin{bmatrix}
+       0 & 1 \\
+        -1 & 2 
+    \end{bmatrix}\right)^\frac{1}{2} 
+    =
+    \begin{bmatrix}
+        1 & -2 \\
+        -2 & 5
+    \end{bmatrix}^\frac{1}{2}\\
+    &= 
+    \frac{1}{\sqrt{8}}
+    \begin{bmatrix}
+        2 & -2\\
+        -2 & 6
+    \end{bmatrix}\\
+    &=
+    \begin{bmatrix}
+         \frac{\sqrt{2}}{2} & \frac{-\sqrt{2}}{2} \\
+        \frac{-\sqrt{2}}{2} & \frac{3\sqrt{2}}{2}
+    \end{bmatrix}
+\end{align*}
+Similarly, 
+\begin{align*}
+    |A| &= \left|
+    \begin{bmatrix}
+        -1 & 1\\
+        -1 & 1
+    \end{bmatrix} \right|\\
+    &=
+    \left(
+    \begin{bmatrix}
+        -1 & -1\\
+        1 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        -1 & 1\\
+        -1 & 1
+    \end{bmatrix}\right)^\frac{1}{2} 
+    = 
+    \begin{bmatrix}
+        2 & -2 \\
+        -2 & 2
+    \end{bmatrix}^\frac{1}{2}\\
+    &= 
+    \frac{1}{2}
+    \begin{bmatrix}
+        2 & -2\\
+        -2 & 2
+    \end{bmatrix}\\
+    &=
+    \begin{bmatrix}
+        1 & -1\\
+        -1 & 1
+    \end{bmatrix}
+\end{align*}
+If we apply the triangle inequality with these three matrices found, we get the following result:
+\begin{align*}
+    |A+I_2| &\leq |A| +I_2 \\
+    \implies\begin{bmatrix}
+        \frac{\sqrt{2}}{2} & \frac{-\sqrt{2}}{2} \\
+        \frac{-\sqrt{2}}{2} & \frac{3\sqrt{2}}{2}
+    \end{bmatrix}
+    &\leq
+    \begin{bmatrix}
+        1 & -1 \\
+        -1 & 1
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        1 & 0 \\
+        0 & 1
+    \end{bmatrix}\\
+    \Leftrightarrow 
+    \begin{bmatrix}
+        0 & 0 \\
+        0 & 0
+    \end{bmatrix}
+    &\leq
+    \begin{bmatrix}
+        2 &-1\\
+        -1 & 2
+    \end{bmatrix} 
+    -
+    \begin{bmatrix}
+        \frac{\sqrt{2}}{2} & \frac{-\sqrt{2}}{2} \\
+        \frac{-\sqrt{2}}{2} & \frac{3\sqrt{2}}{2}
+    \end{bmatrix}\\
+    \implies
+    \begin{bmatrix}
+        0 & 0 \\
+        0 & 0
+    \end{bmatrix}
+    &\leq
+    \begin{bmatrix}
+        2 - \frac{\sqrt{2}}{2} & -1 + \frac{\sqrt{2}}{2}\\
+        -1 + \frac{\sqrt{2}}{2} & 2 - \frac{3\sqrt{2}}{2}
+    \end{bmatrix} 
+\end{align*}
+If the difference matrix $|A|+I_2-|A+I_2|$ is not positive semidefinite then the triangle inequality would have failed.
+We will check the determinants of the minor diagonals for this difference matrix to determine this.
+\begin{align*}
+    \left|2-\frac{\sqrt{2}}{2}\right| &\approx 2 - 0.707 \\
+    & = 1.23 > 0
+    \text{, and}\\
+    \begin{vmatrix}
+         2 - \frac{\sqrt{2}}{2} & -1 + \frac{\sqrt{2}}{2}\\
+        -1 + \frac{\sqrt{2}}{2} & 2 - \frac{3\sqrt{2}}{2}
+    \end{vmatrix}
+    &= \left( 2 - \frac{\sqrt{2}}{2}\right)\left(2 - \frac{3\sqrt{2}}{2}\right) - \left(-1 + \frac{\sqrt{2}}{2}\right)^2\\
+    &= \left(4 - 3\sqrt{2} - \sqrt{2} + \frac{3}{2} - \left(1 - \sqrt{2} + \frac{1}{2}\right)\right)\\
+    &= 4 - 3\sqrt{2}\\
+    &\approx 4 - 4.243\\
+    &= -0.234 < 0.
+\end{align*}
+This shows that the difference matrix is not PSD; consequently, the triangle inequality fails given the choice of $A$ and $I_2$.
+\end{example}

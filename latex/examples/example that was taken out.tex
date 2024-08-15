@@ -1,0 +1,52 @@
+\begin{example}[Using Theorem \ref{theorem2}]
+    Consider: 
+    $$
+    A = \begin{bmatrix}
+        -1 & 0 \\ 0 & -1
+    \end{bmatrix} \quad
+    \text{and} \quad
+    B = \begin{bmatrix}
+        -1 & 0 \\ 0 & 1
+    \end{bmatrix}
+    $$
+    Clearly $A$ and $B$ are normal and commute. Then the absolute value for these matrices are 
+    $$
+    |A| = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix},
+    |B| =  \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \text{ and }
+    |A+B| =  \begin{bmatrix} 2 & 0 \\ 0 & 0 \end{bmatrix}
+    $$
+    for which the triangle inequality will be satisfied. Checking the triangle inequality results with
+    \begin{align*}
+        |A|+|B|-|A+B| &= 
+            \begin{bmatrix}
+                 0 & 0 \\ 0 & 2 
+            \end{bmatrix}\\
+        &\geq
+        \begin{bmatrix}
+            0 & 0 \\ 0 & 0
+        \end{bmatrix}.
+    \end{align*}
+\end{example}
+
+% another thing taken out
+In this section, we briefly review the concept of absolute value and its interpretation as a measure of magnitude. 
+We then explore how these ideas extend to matrix spaces, examining the resulting properties and behavior.
+\par Absolute values (or moduli) are fundamental in mathematics, describing the magnitude or size of a mathematical structure, such as numbers in $\mathbb{F}$. 
+There are four properties that the absolute value function satisfies for $a\in\mathbb{F}$:
+\begin{enumerate}
+    \item $|a| \geq 0$ \text{ (Non-negative)}
+    \item $ |a|= 0 \Leftrightarrow a = 0$ \text{(Positive-definiteness)}
+    \item $|ab| = |a||b|$ \text{ (Multiplicative)}
+    \item $|a+b| \leq |a| + |b|$ \text{ (Triangle inequality)}.
+\end{enumerate}
+This concept of magnitude is generalized to vector and matrix spaces as a norm function:
+$
+\|\cdot\| : S \rightarrow \mathbb{F}
+$ 
+and there are analogous properties which are always satisfied for $A,B,C \in S$ for $S$ the vector or matrix space and $a\in\mathbb{F}$ some scalar:
+\begin{enumerate}
+    \item $\|A\| \geq 0$ \text{ (Non-negative)}
+    \item $ \|A\|= 0 \Leftrightarrow A = \textbf{0}_S$ \text{(Positive-definiteness)}
+    \item  $\|aA\| = |a|\|A\|$ \text{(Scalar multiplication)}
+    \item $\|A+B\| \leq \|A\| + \|B\|$ \text{ (Triangle inequality)}.
+\end{enumerate}

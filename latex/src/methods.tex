@@ -1,0 +1,76 @@
+\subsection[methods]{Computational Methods}
+
+The Triangle Inequality of the matrix absolute value was investigated using Python. Four key tasks were implemented into their own function for this paper.
+
+\begin{enumerate}
+    \item Verifying a Triangle Inequality
+    \item Computing the Matrix Absolute Value of any Matrix, $A \in M_n$
+    \item Verifying the Positivity of Any Matrix, $A \in M_n$
+    \item Computing a random matrix in $M_n$ of varying entry types and varying entry ranges
+\end{enumerate}
+The complete python project can be found in the Github repository referenced in this paper. In this appendix we provide the pseudocode for each key function, without the usage of helper functions that would be found in the full project.
+
+\paragraph{\textbf{(i) Implementing a Test for the Triangle Inequality}} The procedure of testing the triangle inequality could have simply been included in our statistics scripts, but we wanted the flexibility of being able to test different functions as lengths, as well as changing the notion of positivity if deemed necessary.
+
+\begin{algorithm}
+    \caption{Check Triangle Inequality, \texttt{triangle\_inequality()}}
+    \begin{algorithmic}[1]
+        \REQUIRE{Two elements, $A$, $B$ $\in V$,}
+        \REQUIRE{A function to act as length, $d: V \rightarrow W$}
+        \REQUIRE{A function to act as positivity, $positive: W \rightarrow \texttt{bool}$}
+        \STATE Compute lengths $d(A)$, $d(B)$, $d(A+B)$
+        \STATE difference = $d(A) + d(B)-d(A+B)$
+        \IF{$positive(\text{difference})==\texttt{true}$}
+        \STATE \textbf{return} True
+        \ELSE
+        \STATE \textbf{return} False
+        \ENDIF
+    \end{algorithmic}
+\end{algorithm}
+
+\paragraph{\textbf{(ii) Implementing the Matrix Absolute Value}} We defined a python function for the matrix absolute value, which would serve as our length function in our triangle inequality function. The absolute value of a matrix was implemented in two ways, where the first implementation determines the square root of $A^*A$ using the Spectral Decomposition. This way is the fastest as it exploits the fact that $A^*A$ is always diagonalizable. The second implementation uses a SciPy function, \texttt{absm}, to determine the square root using the Schur Decomposition. This is the most numerically stable way of computing the square root of any matrix regardless of whether it is diagonalizable \cite{Edvin}.
+
+\begin{algorithm}
+    \caption{Compute Matrix Absolute Value (Spectral), \texttt{matrix\_absolute\_value()}}
+    \begin{algorithmic}[1]
+        \REQUIRE{Single matrix, $A \in M_n$,}
+        \STATE{Compute $A^*A$}
+        \STATE{Compute $P$, $D$ of the spectral decomposition $A^*A = PDP^*$}
+        \STATE{Compute $D^\frac{1}{2}$ by taking the square root each element of $D$}
+        \STATE{Compute $|A| = PD^\frac{1}{2}P^*$}
+        \STATE{\textbf{return} $|A|$}
+    \end{algorithmic}
+\end{algorithm}
+
+\paragraph{\textbf{(ii) Implementing a test for Matrix Positivity}} The matrix positivity was implemented in two different ways. The first implementation of determining if a matrix is positive semi-definite, solves for all the eigenvalues, and asserts than the minimum eigenvalue is greater than or equal to zero.
+\begin{algorithm}
+    \caption{Check Matrix Positivity (Eigenvalues), \texttt{matrix\_positivity()}}
+    \begin{algorithmic}[1]
+        \REQUIRE{Single matrix, $A \in M_n$,}
+        \REQUIRE{Tolerance, \texttt{tol},}
+        \STATE{Compute $\sigma(A)$, the set of all eigenvalues of $A$}
+        \STATE{Determine $\lambda_{\min} = \min(\sigma(A))$}
+        \IF{$\lambda_{\min} >$ -\texttt{tol}}
+        \STATE{\textbf{return} True}
+        \ELSE{}
+        \STATE{\textbf{return} False}
+        \ENDIF{}
+    \end{algorithmic}
+\end{algorithm}
+The second implementation for matrices in $M_2$ asserts that the trace is greater than zero and the determinant is greater than or equal to zero, recalling that for any matrix $A$, $\text{tr} A = \sum_{i}^{n} \lambda_i$, and $\text{det} A = \prod_{i}^{n} \lambda_i$. \begin{algorithm}
+    \caption{Check Matrix Positivity of $M_2$ (Trace and Determinant), \texttt{matrix\_positivity()}}
+    \begin{algorithmic}[1]
+        \REQUIRE{Single matrix, $A \in M_2$,}
+        \REQUIRE{Tolerance, \texttt{tol},}
+        \STATE{Compute $\text{tr}A = A[0,0] + A[1,1]$, the Trace of $A$}
+        \STATE{Compute $\text{det}A = (A[0,0] \times A[1,1]) - (A[0,1] \times A[1,0])$, the Determinant of $A$}
+        \IF{$|\text{tr}A| < \texttt{tol}$ \AND$|\text{det}A| < \texttt{tol}$}
+        \STATE{\textbf{return} True}
+        \ELSIF{$\text{tr}A > \texttt{tol}$ \AND$\text{det}A > \texttt{tol}$}
+        \STATE{\textbf{return} True}
+        \ELSE{}
+        \STATE{\textbf{return} False}
+        \ENDIF{}
+    \end{algorithmic}
+\end{algorithm}
+Each implementation, requires a tolerance to determine if the minimum eigenvalue (or trace/determinant) was approximately zero. If the minimum eigenvalue is minuscule, then checking the determinant might be less likely to be near our tolerance as it is the product of all eigenvalues. If all the eigenvalues are fractional, then directly checking the minimum eigenvalue will be less likely to be near our tolerance. Alternating between different implementations of determining PSD and of the matrix absolute value were useful in demonstrating that our results were not sensitive to differences in numerical stability and reproducible through different approaches.
